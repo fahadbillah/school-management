@@ -1,0 +1,733 @@
+/* Navigation Component Suite - Stitch Master Design Specifications */
+
+/* ==========================================================================
+   1. BottomNavigation (Mobile Bottom Tab Bar - Height 80px M3 Baseline)
+   ========================================================================== */
+.bottomNavigation {
+  height: 80px;
+  background-color: var(--ui-surface, #ffffff);
+  border: 1px solid #a1e3f9;
+  border-radius: var(--ui-radius-xl, 16px);
+  padding: 0 var(--ui-space-lg, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow:
+    0 4px 14px -2px rgba(54, 116, 181, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bottomNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+  min-height: 48px;
+  min-width: 48px;
+  color: #64748b;
+  transition: color 0.15s ease;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+}
+
+.bottomNavItem:hover {
+  color: #1e293b;
+}
+
+.bottomNavItem:focus-visible {
+  outline: 2px solid #3674b5;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.bottomNavItemActive {
+  color: #3674b5;
+}
+
+.bottomNavItemActive:hover {
+  color: #245385;
+}
+
+.bottomNavIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.bottomNavActivePill {
+  padding: 4px 20px;
+  border-radius: 9999px;
+  background-color: #d1f8ef;
+  color: #3674b5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bottomNavLabel {
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+.bottomNavItemActive .bottomNavLabel {
+  font-weight: 700;
+  color: #3674b5;
+}
+
+.bottomNavBadge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  background-color: #f43f5e;
+  color: #ffffff;
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1;
+}
+
+/* ==========================================================================
+   2. NavigationRail (Adaptive Tablet & Desktop Rail - 80px Width)
+   ========================================================================== */
+.navigationRail {
+  width: 80px;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ui-space-md, 16px) var(--ui-space-sm, 12px);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.navigationRailHorizontal {
+  width: 100%;
+  min-height: 80px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: var(--ui-space-sm, 12px) var(--ui-space-md, 16px);
+}
+
+.navigationRailDark {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  color: #ffffff;
+  border-radius: 16px;
+}
+
+.navigationRailLight {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  border-radius: 16px;
+}
+
+.navigationRailDocked {
+  border-radius: 0;
+  height: 100%;
+}
+
+.railBrandSlot {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm, 12px);
+  margin-bottom: var(--ui-space-lg, 24px);
+}
+
+.navigationRailHorizontal .railBrandSlot {
+  margin-bottom: 0;
+}
+
+.railBrandIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.railBrandTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.railItemsStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-space-sm, 8px);
+  width: 100%;
+  flex: 1;
+}
+
+.navigationRailHorizontal .railItemsStack {
+  flex-direction: row;
+  justify-content: flex-end;
+  flex: unset;
+}
+
+.railItem {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.15s ease;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+}
+
+.railItem:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Dark Rail items */
+.navigationRailDark .railItem {
+  background-color: #1e293b;
+  color: #cbd5e1;
+}
+
+.navigationRailDark .railItem:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.navigationRailDark .railItemActive {
+  background-color: rgba(37, 99, 235, 0.3);
+  color: #93c5fd;
+  border-color: #3b82f6;
+}
+
+/* Light Rail items */
+.navigationRailLight .railItem {
+  background-color: #f8fafc;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+
+.navigationRailLight .railItem:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.navigationRailLight .railItemActive {
+  background-color: #d1f8ef;
+  color: #3674b5;
+  border-color: #a1e3f9;
+}
+
+.railItemBadge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 3px;
+  border-radius: 9999px;
+  background-color: #f43f5e;
+  color: #ffffff;
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 8px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.railFooterSlot {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-space-sm, 8px);
+}
+
+.navigationRailHorizontal .railFooterSlot {
+  margin-top: 0;
+  margin-left: auto;
+  flex-direction: row;
+}
+
+/* ==========================================================================
+   3. Breadcrumb & MobileWayfinding
+   ========================================================================== */
+.breadcrumb {
+  display: block;
+  box-sizing: border-box;
+}
+
+.breadcrumbPrimary {
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #a1e3f9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumbSubtle {
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.breadcrumbPlain {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.breadcrumbList {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.breadcrumbLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #475569;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+
+.breadcrumbLink:hover {
+  color: #3674b5;
+}
+
+.breadcrumbCurrent {
+  color: #3674b5;
+  font-weight: 700;
+  background-color: #d1f8ef;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #a1e3f9;
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbSeparator {
+  color: #94a3b8;
+  font-size: 10px;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Mobile Compressed Wayfinding (Height: 48px Header Pattern) */
+.mobileWayfinding {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 14px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  border: 2px solid #3674b5;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.wayfindingHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wayfindingBackBtn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+  color: #334155;
+  font-weight: 600;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.wayfindingBackBtn:hover {
+  background-color: #e2e8f0;
+}
+
+.wayfindingBackIcon {
+  font-size: 10px;
+  color: #3674b5;
+}
+
+.wayfindingCurrentTrigger {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background-color: #d1f8ef;
+  border: 1px solid #a1e3f9;
+  color: #0a3663;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  outline: none;
+}
+
+.wayfindingCurrentLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wayfindingCurrentIcon {
+  font-size: 10px;
+  color: #3674b5;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.wayfindingCurrentIconOpen {
+  transform: rotate(180deg);
+}
+
+.wayfindingPopover {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 11px;
+  margin-top: 10px;
+  animation: ui-fade-in 0.15s ease-out;
+}
+
+.wayfindingPopoverMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  font-family: var(--ui-font-mono, monospace);
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.wayfindingPopoverAction {
+  color: #3674b5;
+  font-weight: 600;
+}
+
+.wayfindingPathList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wayfindingPathItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 11px;
+  color: #475569;
+  transition: background-color 0.15s ease;
+}
+
+.wayfindingPathItem:hover {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.wayfindingPathItemActive {
+  background-color: #d1f8ef;
+  color: #0a3663;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   4. AppNavbar & NavigationMenu (Desktop & Mobile Responsive)
+   ========================================================================== */
+.appNavbar {
+  height: 64px;
+  background-color: var(--ui-surface, #ffffff);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 var(--ui-space-lg, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-lg, 24px);
+}
+
+.navbarBrand {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm, 12px);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.navbarBrandLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #3674b5;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.navbarBrandTitles {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbarBrandName {
+  font-family: var(--ui-font-display, inherit);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.navbarBrandSubtitle {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.navbarMenu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarMenuItem {
+  position: relative;
+}
+
+.navbarMenuLink {
+  height: 40px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.navbarMenuLink:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.navbarMenuLink:focus-visible {
+  outline: 2px solid #3674b5;
+  outline-offset: 1px;
+}
+
+.navbarMenuLinkActive {
+  background-color: #d1f8ef;
+  color: #3674b5;
+  border-color: #a1e3f9;
+  font-weight: 600;
+}
+
+.navbarDropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 200px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  padding: 6px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: ui-fade-in 0.15s ease-out;
+}
+
+.navbarDropdownItem {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.navbarDropdownItem:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.navbarDropdownItemActive {
+  background-color: #d1f8ef;
+  color: #0a3663;
+  font-weight: 600;
+}
+
+.navbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm, 12px);
+}
+
+.navbarMobileToggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #334155;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navbarMobileDrawer {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbarMobileDrawerContent {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .navbarMenu {
+    display: none;
+  }
+  .navbarMobileToggle {
+    display: flex;
+  }
+}
+
+@keyframes ui-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

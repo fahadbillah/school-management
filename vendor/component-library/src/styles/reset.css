@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Optional Document Reset
+   Consumers can import 'react-component-library/reset.css' if they want
+   the full typography and background default applied to document body.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ui-font-body);
+  color: var(--ui-text-high);
+  background-color: var(--ui-background);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

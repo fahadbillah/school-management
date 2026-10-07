@@ -1,0 +1,15 @@
+@import './tokens.css';
+@import './layout.css';
+
+/* Scoped root container styles (non-polluting) */
+.ui-root {
+  font-family: var(--ui-font-body);
+  color: var(--ui-text-high);
+  box-sizing: border-box;
+}
+
+.ui-root *,
+.ui-root *::before,
+.ui-root *::after {
+  box-sizing: border-box;
+}

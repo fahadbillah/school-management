@@ -1,0 +1,135 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-sm);
+  font-family: var(--ui-font-display);
+  font-weight: 600;
+  border-radius: var(--ui-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-decoration: none;
+  transition: all var(--ui-transition-fast);
+  outline: none;
+  position: relative;
+}
+
+.button:focus-visible {
+  box-shadow: var(--ui-focus-ring);
+  outline: 2px solid var(--ui-structural-outline);
+  outline-offset: 2px;
+}
+
+/* Sizes */
+.size-sm {
+  height: 36px;
+  padding: 0 var(--ui-space-sm);
+  font-size: var(--ui-text-xs);
+  line-height: var(--ui-leading-xs);
+}
+
+.size-md {
+  height: 44px;
+  padding: 0 var(--ui-space-md);
+  font-size: var(--ui-text-sm);
+  line-height: var(--ui-leading-sm);
+}
+
+.size-lg {
+  height: 52px;
+  padding: 0 var(--ui-space-lg);
+  font-size: var(--ui-text-base);
+  line-height: var(--ui-leading-base);
+}
+
+/* Variants */
+.variant-primary {
+  background-color: var(--ui-primary-accent);
+  color: var(--ui-on-primary);
+  border-color: var(--ui-primary-accent);
+}
+
+.variant-primary:hover:not(:disabled) {
+  background-color: var(--ui-primary-hover);
+  border-color: var(--ui-primary-hover);
+}
+
+.variant-secondary {
+  background-color: var(--ui-primary-tint);
+  color: var(--ui-primary-accent);
+  border-color: transparent;
+}
+
+.variant-secondary:hover:not(:disabled) {
+  border-color: var(--ui-structural-outline);
+  background-color: #c2f5ea;
+}
+
+.variant-outline {
+  background-color: transparent;
+  border-color: var(--ui-structural-outline);
+  color: var(--ui-text-high);
+}
+
+.variant-outline:hover:not(:disabled) {
+  background-color: var(--ui-surface);
+  border-color: var(--ui-secondary-accent);
+}
+
+.variant-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--ui-primary-accent);
+}
+
+.variant-ghost:hover:not(:disabled) {
+  background-color: rgba(54, 116, 181, 0.08);
+}
+
+.variant-danger {
+  background-color: var(--ui-color-danger);
+  color: #ffffff;
+  border-color: var(--ui-color-danger);
+}
+
+.variant-danger:hover:not(:disabled) {
+  background-color: #9b1515;
+  border-color: #9b1515;
+}
+
+.variant-danger:focus-visible {
+  box-shadow: var(--ui-focus-ring-danger);
+  outline-color: var(--ui-color-danger);
+}
+
+/* States */
+.fullWidth {
+  width: 100%;
+}
+
+.disabled,
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loading {
+  cursor: wait;
+}
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}

@@ -1,0 +1,288 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--ui-font-body);
+  border: 1px solid transparent;
+  user-select: none;
+  white-space: nowrap;
+  transition: all var(--ui-transition-fast);
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* Shapes: pill (rounded-full 9999px) vs rounded (rounded-xl 12px / rounded-lg 8px) */
+.pill {
+  border-radius: var(--ui-radius-full);
+}
+
+.rounded {
+  border-radius: var(--ui-radius-lg); /* 12px / rounded-xl */
+}
+
+.rounded.sm {
+  border-radius: var(--ui-radius-md); /* 8px / rounded-lg */
+}
+
+/* Sizing: sm (24px Dense), md (32px Standard), lg (40px Touch) */
+.sm {
+  height: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 4px;
+}
+
+.md {
+  height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: var(--ui-text-xs);
+  font-weight: 600;
+  gap: 6px;
+}
+
+.lg {
+  height: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: var(--ui-text-sm);
+  font-weight: 700;
+  gap: 8px;
+}
+
+/* Variants */
+.neutral {
+  background-color: #ffffff;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+.primary {
+  background-color: #3674b5;
+  color: #ffffff;
+  border-color: #3674b5;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.tonal {
+  background-color: #d1f8ef;
+  color: #0a3663;
+  border-color: #a1e3f9;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.outline {
+  background-color: #ffffff;
+  color: #3674b5;
+  border-color: #a1e3f9;
+}
+
+.success {
+  background-color: #dcfce7;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.warning {
+  background-color: #fef3c7;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+/* Interactive & Selected States */
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover:not(.disabled):not(.primary):not(.selected) {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.clickable.primary:hover:not(.disabled),
+.clickable.selected:hover:not(.disabled) {
+  background-color: #2a5a8c;
+}
+
+.clickable.tonal:hover:not(.disabled) {
+  background-color: #bbf3e7;
+}
+
+.clickable:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(87, 143, 202, 0.35);
+  border-color: #3674b5;
+}
+
+.selected {
+  background-color: #3674b5 !important;
+  color: #ffffff !important;
+  border-color: #3674b5 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.selectedIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Slots */
+.avatarSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Force Stitch Avatar Token Styling inside Chip: Solid Blue fill, White text, No border */
+.avatarSlot > * {
+  border: none !important;
+  background-color: #3674b5 !important;
+  color: #ffffff !important;
+  border-radius: var(--ui-radius-full) !important;
+  box-shadow: none !important;
+}
+
+.sm .avatarSlot > * {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+}
+
+.md .avatarSlot > * {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+.lg .avatarSlot > * {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+/* Exact Stitch Avatar Token Dimensions and Spacing */
+.hasAvatar.sm {
+  height: 24px;
+  padding-left: 2px;
+  padding-right: 8px;
+  gap: 4px;
+}
+
+.hasAvatar.md {
+  height: 32px;
+  padding-left: 4px; /* pl-1 */
+  padding-right: 10px; /* pr-2.5 */
+  gap: 6px; /* gap-1.5 */
+}
+
+.hasAvatar.lg {
+  height: 40px;
+  padding-left: 6px;
+  padding-right: 14px;
+  gap: 8px;
+}
+
+.hasAvatar.tonal {
+  background-color: #d1f8ef;
+  border-color: #a1e3f9;
+  color: #0a3663;
+  font-weight: 700;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.label {
+  line-height: 1;
+}
+
+.hasAvatar .label {
+  font-weight: 700;
+}
+
+/* Count badge */
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: var(--ui-radius-full);
+  background-color: #ffffff;
+  color: #0a3663;
+  margin-left: 2px;
+}
+
+.primary .countBadge,
+.selected .countBadge {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Remove button */
+.removeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 1px;
+  margin-right: -2px;
+  margin-left: 2px;
+  border-radius: var(--ui-radius-full);
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  transition:
+    opacity var(--ui-transition-fast),
+    color var(--ui-transition-fast);
+  flex-shrink: 0;
+}
+
+.removeButton:hover {
+  opacity: 1;
+}
+
+.hasAvatar .removeButton {
+  margin-left: 2px;
+  color: #64748b;
+  opacity: 1;
+}
+
+.hasAvatar .removeButton:hover {
+  color: #0f172a;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

@@ -1,0 +1,337 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-sm);
+  width: 100%;
+  font-family: var(--ui-font-body);
+  position: relative;
+}
+
+.size-sm {
+  gap: var(--ui-space-xs);
+}
+
+.label {
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  color: var(--ui-text-high);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required {
+  color: var(--ui-color-danger);
+}
+
+/* Trigger Field */
+.trigger {
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-sm);
+  background-color: #ffffff;
+  border: 1px solid #a1e3f9;
+  border-radius: var(--ui-radius-lg);
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-sm);
+  color: #0f172a;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--ui-transition-fast);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.trigger:hover:not(.disabled) {
+  border-color: #578fca;
+}
+
+.isOpen .trigger,
+.trigger:focus-within {
+  border: 2px solid #3674b5;
+  box-shadow: 0 4px 12px -2px rgba(54, 116, 181, 0.15);
+}
+
+/* Sizes */
+.size-sm .trigger {
+  min-height: 36px;
+  padding: 4px var(--ui-space-sm);
+}
+
+.size-lg .trigger {
+  min-height: 52px;
+  padding: 8px var(--ui-space-lg);
+}
+
+/* Chips container inside trigger */
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  background: transparent;
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-high);
+  outline: none;
+  padding: 4px 0;
+}
+
+.placeholder {
+  color: var(--ui-text-muted);
+}
+
+.moreCount {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Trailing controls */
+.trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  flex-shrink: 0;
+}
+
+.clearAllButton {
+  background: transparent;
+  border: none;
+  padding: 2px 4px;
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 10px;
+  color: #94a3b8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--ui-transition-fast);
+}
+
+.clearAllButton:hover {
+  color: #e11d48;
+}
+
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  color: #94a3b8;
+  transition: transform var(--ui-transition-fast);
+}
+
+.isOpen .chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--ui-radius-lg);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  z-index: var(--ui-z-dropdown);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.empty {
+  padding: var(--ui-space-md);
+  text-align: center;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+/* Option row */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color var(--ui-transition-fast);
+  user-select: none;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover,
+.focused {
+  background-color: #f8fafc;
+}
+
+.selected {
+  background-color: #f0fdf9;
+}
+
+.selected.focused,
+.selected:hover {
+  background-color: #e6faf5;
+}
+
+.checkboxSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkboxBox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all var(--ui-transition-fast);
+}
+
+.checkboxChecked {
+  background-color: #3674b5;
+  border-color: #3674b5;
+}
+
+.avatarSlot {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.avatarSlot :global(.Avatar_container) {
+  width: 28px !important;
+  height: 28px !important;
+  font-size: 10px !important;
+  font-weight: 700;
+}
+
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ui-text-muted);
+  flex-shrink: 0;
+}
+
+.labelCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.optionLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+.badge {
+  font-family: var(--ui-font-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.badge-primary {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.badge-success {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.badge-warning {
+  background-color: #fffbeb;
+  color: #b45309;
+}
+
+.badge-neutral {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.optionDescription {
+  font-size: 11px;
+  color: #64748b;
+  font-family: var(--ui-font-mono, monospace);
+  margin-top: 2px;
+}
+
+.optionDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Validation states */
+.hasError .trigger {
+  border-color: var(--ui-color-danger);
+}
+
+.hasError.isOpen .trigger,
+.hasError .trigger:focus-within {
+  box-shadow: 0 0 0 3px rgba(186, 26, 26, 0.2);
+}
+
+.errorText {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-color-danger);
+}
+
+.helperText {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}

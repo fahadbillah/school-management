@@ -1,0 +1,16 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production & Build Outputs
+storybook-static
+
+# Testing & Coverage
+coverage
+
+# Environment & Logs
+*.log
+.DS_Store
+.env
+.env.local

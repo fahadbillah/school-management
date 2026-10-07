@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  /* ==========================================================================
+     Colors - Core Palette
+     ========================================================================== */
+  --ui-primary: #115b9b;
+  --ui-primary-accent: #3674b5;
+  --ui-primary-hover: #2a5a8c;
+  --ui-primary-container: #3674b5;
+  --ui-on-primary: #ffffff;
+  --ui-on-primary-container: #f5f7ff;
+  --ui-primary-tint: #d1f8ef;
+
+  --ui-secondary: #226199;
+  --ui-secondary-accent: #578fca;
+  --ui-secondary-container: #89bffe;
+  --ui-on-secondary: #ffffff;
+  --ui-on-secondary-container: #004e83;
+
+  --ui-tertiary: #3c5f59;
+  --ui-tertiary-container: #547871;
+  --ui-on-tertiary: #ffffff;
+  --ui-on-tertiary-container: #d9fff6;
+
+  /* Canvas & Surface Layers */
+  --ui-background: #f4fbfa;
+  --ui-surface: #f4fbfa;
+  --ui-surface-dim: #d4dbdb;
+  --ui-surface-bright: #f4fbfa;
+  --ui-surface-container-lowest: #ffffff;
+  --ui-surface-container-low: #eef5f4;
+  --ui-surface-container: #e8efee;
+  --ui-surface-container-high: #e2eae9;
+  --ui-surface-container-highest: #dde4e3;
+
+  /* Typography / Text Colors */
+  --ui-text-high: #0f172a;
+  --ui-text-muted: #64748b;
+  --ui-text-interactive: #578fca;
+  --ui-on-surface: #161d1d;
+  --ui-on-surface-variant: #414750;
+  --ui-inverse-surface: #2b3231;
+  --ui-inverse-on-surface: #ebf2f1;
+
+  /* Structural Outlines & Borders */
+  --ui-structural-outline: #a1e3f9;
+  --ui-border: rgba(161, 227, 249, 0.5);
+  --ui-border-strong: #a1e3f9;
+  --ui-outline: #727781;
+  --ui-outline-variant: #c1c7d2;
+  --ui-surface-tint: #1b61a0;
+
+  /* Semantic Status Tokens */
+  --ui-color-success: #15803d;
+  --ui-color-success-bg: #dcfce7;
+  --ui-color-success-border: #bbf7d0;
+
+  --ui-color-warning: #b45309;
+  --ui-color-warning-bg: #fef3c7;
+  --ui-color-warning-border: #fde68a;
+
+  --ui-color-danger: #b91c1c;
+  --ui-color-danger-bg: #fee2e2;
+  --ui-color-danger-border: #fecaca;
+  --ui-error: #ba1a1a;
+  --ui-error-container: #ffdad6;
+  --ui-on-error: #ffffff;
+  --ui-on-error-container: #93000a;
+
+  --ui-color-info: #2563eb;
+  --ui-color-info-bg: #dbeafe;
+  --ui-color-info-border: #bfdbfe;
+
+  --ui-color-neutral: #414750;
+  --ui-color-neutral-bg: #e8efee;
+  --ui-color-neutral-border: #c1c7d2;
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+  --ui-font-display:
+    'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  --ui-font-body:
+    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+
+  /* Font Sizes & Line Heights */
+  --ui-text-xs: 0.75rem; /* 12px */
+  --ui-leading-xs: 1rem; /* 16px */
+  --ui-text-sm: 0.875rem; /* 14px */
+  --ui-leading-sm: 1.25rem; /* 20px */
+  --ui-text-base: 1rem; /* 16px */
+  --ui-leading-base: 1.5rem; /* 24px */
+  --ui-text-lg: 1.125rem; /* 18px */
+  --ui-leading-lg: 1.5rem; /* 24px */
+  --ui-text-xl: 1.375rem; /* 22px */
+  --ui-leading-xl: 1.75rem; /* 28px */
+  --ui-text-2xl: 1.75rem; /* 28px */
+  --ui-leading-2xl: 2.25rem; /* 36px */
+  --ui-text-3xl: 2.5rem; /* 40px */
+  --ui-leading-3xl: 3rem; /* 48px */
+
+  /* ==========================================================================
+     Spacing (8px Modular Grid)
+     ========================================================================== */
+  --ui-space-2xs: 0.125rem; /* 2px */
+  --ui-space-xs: 0.25rem; /* 4px */
+  --ui-space-sm: 0.5rem; /* 8px */
+  --ui-space-md: 1rem; /* 16px */
+  --ui-space-lg: 1.5rem; /* 24px */
+  --ui-space-xl: 2rem; /* 32px */
+  --ui-space-2xl: 3rem; /* 48px */
+
+  /* ==========================================================================
+     Border Radius
+     ========================================================================== */
+  --ui-radius-sm: 0.25rem; /* 4px */
+  --ui-radius-md: 0.5rem; /* 8px */
+  --ui-radius-lg: 0.75rem; /* 12px */
+  --ui-radius-xl: 1rem; /* 16px */
+  --ui-radius-full: 9999px;
+
+  /* ==========================================================================
+     Elevation & Shadows
+     ========================================================================== */
+  --ui-shadow-1: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --ui-shadow-2:
+    0 4px 16px -2px rgba(54, 116, 181, 0.08),
+    0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --ui-shadow-3:
+    0 12px 32px -4px rgba(54, 116, 181, 0.14),
+    0 4px 12px -2px rgba(15, 23, 42, 0.06);
+
+  /* ==========================================================================
+     Transitions & Focus
+     ========================================================================== */
+  --ui-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ui-transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ui-focus-ring: 0 0 0 3px rgba(87, 143, 202, 0.25);
+  --ui-focus-ring-danger: 0 0 0 3px rgba(185, 28, 28, 0.25);
+
+  /* ==========================================================================
+     Layout & Container Architecture (8px Spatial Rhythm)
+     ========================================================================== */
+  --ui-container-max: 1280px; /* max-w-7xl standard desktop clamp */
+  --ui-container-narrow: 960px; /* max-w-5xl form & reading clamp */
+  --ui-container-compact: 768px; /* max-w-3xl modal & wizard clamp */
+
+  /* Responsive Horizontal Guardrails (Edge Buffer) */
+  --ui-container-px-mobile: 1rem; /* 16px (px-4) */
+  --ui-container-px-tablet: 1.5rem; /* 24px (px-6) */
+  --ui-container-px-desktop: 2rem; /* 32px (px-8) */
+
+  /* Responsive Vertical Gutters */
+  --ui-gutter-py-mobile: 1.5rem; /* 24px (py-6) */
+  --ui-gutter-py-desktop: 2rem; /* 32px (py-8) */
+
+  /* Structural Strip Heights */
+  --ui-header-height: 4rem; /* 64px (h-16) */
+  --ui-subnav-height: 3rem; /* 48px (h-12) */
+  --ui-footer-py: 1rem; /* 16px (py-4) */
+
+  /* Z-Index Layers */
+  --ui-z-dropdown: 100;
+  --ui-z-modal: 1000;
+  --ui-z-popover: 1100;
+  --ui-z-tooltip: 1200;
+}

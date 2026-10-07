@@ -1,0 +1,393 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* Wrapper around the scroll view and navigation controls */
+.navWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--ui-space-xs);
+}
+
+/* Scroll viewport container */
+.scrollContainer {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE / Edge */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  padding: 4px 0;
+  flex: 1;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Base tabList */
+.tabList {
+  display: inline-flex;
+  gap: var(--ui-space-xs);
+  padding: 4px;
+  background-color: var(--ui-surface-container);
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+/* Underline variant */
+.variant-underline {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--ui-structural-outline);
+  padding: 0;
+  gap: var(--ui-space-md);
+  width: 100%;
+}
+
+/* Contained / Segmented variant */
+.variant-segmented {
+  background-color: var(--ui-surface-container-low);
+  border: 1px solid var(--ui-border-strong);
+  padding: 6px;
+  gap: var(--ui-space-xs);
+  border-radius: var(--ui-radius-xl);
+}
+
+/* Tab button element */
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-sm);
+  padding: var(--ui-space-sm) var(--ui-space-md);
+  font-family: var(--ui-font-display);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  color: var(--ui-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--ui-radius-md);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all var(--ui-transition-fast);
+  outline: none;
+  position: relative;
+  min-height: 36px;
+}
+
+/* Touch friendly minimum sizing */
+.size-sm {
+  min-height: 32px;
+  padding: 4px var(--ui-space-sm);
+  font-size: var(--ui-text-xs);
+}
+
+.size-md {
+  min-height: 40px;
+  padding: var(--ui-space-sm) var(--ui-space-md);
+  font-size: var(--ui-text-sm);
+}
+
+.size-lg {
+  min-height: 48px;
+  padding: var(--ui-space-md) var(--ui-space-lg);
+  font-size: var(--ui-text-base);
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--ui-text-high);
+}
+
+.tab:focus-visible {
+  box-shadow: var(--ui-focus-ring);
+  z-index: 2;
+}
+
+/* Active State for Pill Variant */
+.tabActive {
+  background-color: var(--ui-surface-container-lowest);
+  color: var(--ui-primary-accent);
+  box-shadow: var(--ui-shadow-1);
+}
+
+/* Active State for Underline Variant */
+.variant-underline .tab {
+  border-radius: 0;
+  padding: var(--ui-space-sm) var(--ui-space-xs);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.variant-underline .tabActive {
+  background: transparent;
+  color: var(--ui-primary-accent);
+  border-bottom-color: var(--ui-primary-accent);
+  box-shadow: none;
+}
+
+/* Active State for Segmented Variant */
+.variant-segmented .tabActive {
+  background-color: var(--ui-primary);
+  color: var(--ui-on-primary);
+  box-shadow: var(--ui-shadow-2);
+}
+
+.variant-segmented .tabActive .badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--ui-on-primary);
+}
+
+.tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Micro pill metadata badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--ui-radius-full);
+  background-color: var(--ui-surface-container-high);
+  color: var(--ui-text-high);
+  line-height: 1;
+}
+
+.tabActive .badge {
+  background-color: var(--ui-primary-tint);
+  color: var(--ui-primary-accent);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullWidth .tab {
+  flex: 1;
+}
+
+/* Scroll arrow buttons */
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ui-radius-full);
+  background-color: var(--ui-surface-container-lowest);
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text-high);
+  box-shadow: var(--ui-shadow-1);
+  cursor: pointer;
+  z-index: 5;
+  transition: all var(--ui-transition-fast);
+  outline: none;
+}
+
+.scrollButton:hover {
+  background-color: var(--ui-surface-container);
+  color: var(--ui-primary);
+  border-color: var(--ui-primary-accent);
+}
+
+.scrollButton:focus-visible {
+  box-shadow: var(--ui-focus-ring);
+}
+
+.scrollButtonLeft {
+  left: 0;
+}
+
+.scrollButtonRight {
+  right: 0;
+}
+
+/* Edge gradient overflow masks */
+.hasScrollLeft::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: linear-gradient(
+    to right,
+    var(--ui-background),
+    rgba(244, 251, 250, 0)
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hasScrollRight::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: linear-gradient(
+    to left,
+    var(--ui-background),
+    rgba(244, 251, 250, 0)
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ==========================================================================
+   More Overflow Dropdown Menu Trigger & Popover
+   ========================================================================== */
+.moreWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.moreButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-xs);
+  padding: var(--ui-space-sm) var(--ui-space-md);
+  font-family: var(--ui-font-display);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  color: var(--ui-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--ui-radius-md);
+  cursor: pointer;
+  transition: all var(--ui-transition-fast);
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  min-height: 36px;
+}
+
+.moreButton:hover {
+  color: var(--ui-text-high);
+}
+
+.moreButton:focus-visible {
+  box-shadow: var(--ui-focus-ring);
+  z-index: 2;
+}
+
+.moreButtonActive {
+  background-color: var(--ui-surface-container-lowest);
+  color: var(--ui-primary-accent);
+  box-shadow: var(--ui-shadow-1);
+}
+
+.variant-underline .moreWrapper .moreButton {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  padding: var(--ui-space-sm) var(--ui-space-xs);
+  margin-bottom: -1px;
+}
+
+.variant-underline .moreWrapper .moreButtonActive {
+  color: var(--ui-primary-accent);
+  border-bottom-color: var(--ui-primary-accent);
+  background: transparent;
+  box-shadow: none;
+}
+
+.variant-segmented .moreWrapper .moreButtonActive {
+  background-color: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+
+.moreMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 200px;
+  max-width: 320px;
+  max-height: 280px;
+  overflow-y: auto;
+  background-color: var(--ui-surface-container-lowest);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-3);
+  padding: 6px;
+  z-index: var(--ui-z-dropdown);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.moreMenuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--ui-space-sm) var(--ui-space-md);
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-sm);
+  font-weight: 500;
+  color: var(--ui-text-high);
+  background: transparent;
+  border: none;
+  border-radius: var(--ui-radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--ui-transition-fast);
+  outline: none;
+}
+
+.moreMenuItem:hover:not(:disabled) {
+  background-color: var(--ui-surface-container-low);
+  color: var(--ui-primary);
+}
+
+.moreMenuItem:focus-visible {
+  background-color: var(--ui-surface-container-low);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.moreMenuItemActive {
+  background-color: var(--ui-surface-container);
+  color: var(--ui-primary-accent);
+  font-weight: 600;
+}
+
+.moreMenuItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.moreMenuItemLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tab Panel */
+.panel {
+  padding-top: var(--ui-space-md);
+  outline: none;
+}

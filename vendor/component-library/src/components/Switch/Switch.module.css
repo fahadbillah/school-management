@@ -1,0 +1,75 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--ui-font-body);
+}
+
+.track {
+  width: 44px;
+  height: 24px;
+  background-color: var(--ui-surface-dim);
+  border: 1px solid var(--ui-outline-variant);
+  border-radius: var(--ui-radius-full);
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  transition: all var(--ui-transition-normal);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.thumb {
+  width: 18px;
+  height: 18px;
+  background-color: #ffffff;
+  border-radius: var(--ui-radius-full);
+  box-shadow: var(--ui-shadow-1);
+  transition: transform var(--ui-transition-fast);
+  transform: translateX(0);
+}
+
+.checked .track {
+  background-color: var(--ui-primary-accent);
+  border-color: var(--ui-primary-accent);
+}
+
+.checked .thumb {
+  transform: translateX(20px);
+}
+
+.nativeInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.nativeInput:focus-visible + .track {
+  box-shadow: var(--ui-focus-ring);
+}
+
+.label {
+  font-size: var(--ui-text-sm);
+  font-weight: 500;
+  color: var(--ui-text-high);
+}
+
+.description {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

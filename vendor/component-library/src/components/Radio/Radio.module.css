@@ -1,0 +1,91 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-sm);
+  font-family: var(--ui-font-body);
+}
+
+.groupLabel {
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  color: var(--ui-text-high);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--ui-radius-full);
+  border: 1.5px solid var(--ui-structural-outline);
+  background-color: var(--ui-surface-container-lowest);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--ui-transition-fast);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--ui-radius-full);
+  background-color: var(--ui-primary-accent);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--ui-transition-fast);
+}
+
+.checked .circle {
+  border-color: var(--ui-primary-accent);
+}
+
+.checked .dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nativeInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.nativeInput:focus-visible + .circle {
+  box-shadow: var(--ui-focus-ring);
+  border-color: var(--ui-primary-accent);
+}
+
+.label {
+  font-size: var(--ui-text-sm);
+  font-weight: 500;
+  color: var(--ui-text-high);
+}
+
+.description {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disabled .circle {
+  background-color: var(--ui-surface-dim);
+}

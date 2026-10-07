@@ -1,0 +1,133 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  animation: fadeIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1001;
+  background-color: var(--ui-surface-container-lowest);
+  border-left: 1px solid var(--ui-border);
+  box-shadow: var(--ui-shadow-3);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.placement-right {
+  right: 0;
+  animation: slideInRight 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.placement-left {
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--ui-border);
+  animation: slideInLeft 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Sizes */
+.size-sm {
+  max-width: 320px;
+}
+
+.size-md {
+  max-width: 420px;
+}
+
+.size-lg {
+  max-width: 560px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ui-space-lg);
+  border-bottom: 1px solid var(--ui-surface-container-low);
+}
+
+.title {
+  font-family: var(--ui-font-display);
+  font-size: var(--ui-text-lg);
+  font-weight: 600;
+  color: var(--ui-text-high);
+  margin: 0;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  padding: var(--ui-space-xs);
+  border-radius: var(--ui-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--ui-transition-fast);
+}
+
+.closeButton:hover {
+  background-color: var(--ui-surface);
+  color: var(--ui-text-high);
+}
+
+.closeButton:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.body {
+  flex: 1;
+  padding: var(--ui-space-lg);
+  overflow-y: auto;
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-high);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ui-space-sm);
+  padding: var(--ui-space-md) var(--ui-space-lg);
+  border-top: 1px solid var(--ui-surface-container-low);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

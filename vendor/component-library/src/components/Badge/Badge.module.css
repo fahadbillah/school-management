@@ -1,0 +1,70 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--ui-font-body);
+  font-weight: 600;
+  border-radius: var(--ui-radius-full);
+  border: 1px solid transparent;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  transition: all var(--ui-transition-fast);
+}
+
+/* Sizes */
+.size-sm {
+  height: 22px;
+  padding: 0 8px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.size-md {
+  height: 28px;
+  padding: 0 12px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+/* Status Variants */
+.variant-success {
+  background-color: var(--ui-color-success-bg);
+  color: var(--ui-color-success);
+  border-color: var(--ui-color-success-border);
+}
+
+.variant-warning {
+  background-color: var(--ui-color-warning-bg);
+  color: var(--ui-color-warning);
+  border-color: var(--ui-color-warning-border);
+}
+
+.variant-danger {
+  background-color: var(--ui-color-danger-bg);
+  color: var(--ui-color-danger);
+  border-color: var(--ui-color-danger-border);
+}
+
+.variant-info {
+  background-color: var(--ui-color-info-bg);
+  color: var(--ui-color-info);
+  border-color: var(--ui-color-info-border);
+}
+
+.variant-neutral {
+  background-color: var(--ui-color-neutral-bg);
+  color: var(--ui-color-neutral);
+  border-color: var(--ui-color-neutral-border);
+}
+
+/* Indicator Dot */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ui-radius-full);
+  background-color: currentColor;
+  display: inline-block;
+  flex-shrink: 0;
+}
