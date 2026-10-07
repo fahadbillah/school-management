@@ -15,7 +15,6 @@ import {
   Button,
   Input,
   Modal,
-  Tabs,
 } from 'react-component-library';
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { HomeworkTask } from '../../types/models';
@@ -59,14 +58,6 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
   // Current student context (Lucas Montgomery)
   const currentStudent = students[0];
-
-  const studentTabs = [
-    { id: 'overview', label: 'Activity Center' },
-    { id: 'homework', label: 'Coursework Locker' },
-    { id: 'schedule', label: 'Class Timetable' },
-    { id: 'analytics', label: 'Performance & Report' },
-    { id: 'library', label: 'Digital Library' },
-  ];
 
   const filteredBooks = libraryBooks.filter(
     (b) =>
@@ -118,39 +109,50 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Tabs
-        tabs={studentTabs}
-        activeTab={activeTab}
-        onChange={handleTabChange}
-        variant="pill"
-        scrollable
-      />
-
+    <div className="portal-root-view">
       {/* 1. Student Activity Center Overview */}
       {activeTab === 'overview' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* Hero Card */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Quick at-a-glance student operational shortcuts */}
+          <div className="quick-glance-strip">
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Quick Locker:
+            </span>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('schedule')}>
+              🗓️ Full Timetable
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('homework')}>
+              📁 Submit Homework
+            </button>
+            <button className="quick-glance-pill" onClick={() => setIsReportCardOpen(true)}>
+              🎓 Report Card Preview
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('library')}>
+              📖 Digital Library
+            </button>
+          </div>
+
+          {/* Hero Card - Compact */}
           <Card elevation={2} style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)', color: '#ffffff' }}>
-            <CardContent style={{ padding: '24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+            <CardContent style={{ padding: '16px 20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
-                  <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.85 }}>
-                    Next Class Up Next
+                  <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.85 }}>
+                    Up Next Right Now
                   </span>
-                  <h2 style={{ fontSize: '24px', fontWeight: 700, margin: '4px 0' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, margin: '2px 0' }}>
                     Mathematics: Polynomial Factorization
-                  </h2>
-                  <p style={{ fontSize: '14px', opacity: 0.9 }}>
-                    Period 2 (09:45 AM) • STEM-Building Room 204 • Prof. Eleanor Vance
+                  </h3>
+                  <p style={{ fontSize: '13px', opacity: 0.9 }}>
+                    Period 2 (09:45 AM) • Room 204 • Prof. Eleanor Vance
                   </p>
                 </div>
                 <Button
                   variant="secondary"
-                  size="md"
+                  size="sm"
                   onClick={() => handleTabChange('schedule')}
                 >
-                  View Full Timetable
+                  View Timetable
                 </Button>
               </div>
             </CardContent>

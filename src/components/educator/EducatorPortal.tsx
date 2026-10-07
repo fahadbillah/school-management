@@ -16,7 +16,6 @@ import {
   Input,
   Dropdown,
   Modal,
-  Tabs,
 } from 'react-component-library';
 import { useSchoolStore } from '../../context/useSchoolStore';
 
@@ -88,14 +87,6 @@ export const EducatorPortal: React.FC<EducatorPortalProps> = ({
   const [incidentStudentId, setIncidentStudentId] = useState('student-1');
   const [incidentCategory, setIncidentCategory] = useState<'Academic' | 'Behavioral' | 'Punctuality' | 'Commendation'>('Commendation');
   const [incidentNotes, setIncidentNotes] = useState('');
-
-  const educatorTabs = [
-    { id: 'workspace', label: 'Daily Workspace' },
-    { id: 'attendance', label: 'Rapid Attendance' },
-    { id: 'gradebook', label: 'Digital Gradebook' },
-    { id: 'homework', label: 'Homework & Resources' },
-    { id: 'conduct', label: 'Conduct & Leave Queue' },
-  ];
 
   const handleToggleAttendance = (studentId: string) => {
     setAttendanceState((prev) => {
@@ -184,18 +175,32 @@ export const EducatorPortal: React.FC<EducatorPortalProps> = ({
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Tabs
-        tabs={educatorTabs}
-        activeTab={activeTab}
-        onChange={handleTabChange}
-        variant="pill"
-        scrollable
-      />
-
+    <div className="portal-root-view">
       {/* 1. Daily Workspace Dashboard */}
       {activeTab === 'workspace' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Quick at-a-glance operational dispatch pills */}
+          <div className="quick-glance-strip">
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Quick Dispatch:
+            </span>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('attendance')}>
+              📋 Take Class Attendance
+            </button>
+            <button className="quick-glance-pill" onClick={() => setIsNewHomeworkModalOpen(true)}>
+              📝 + Assign Homework
+            </button>
+            <button className="quick-glance-pill" onClick={() => setIsIncidentModalOpen(true)}>
+              ⚖️ Log Student Conduct
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('gradebook')}>
+              📊 Open Gradebook
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('conduct')}>
+              📬 Review Absence Queue
+            </button>
+          </div>
+
           <div className="grid-4col">
             <StatCard
               title="Today's Classes"

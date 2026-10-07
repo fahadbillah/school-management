@@ -16,7 +16,6 @@ import {
   Input,
   Dropdown,
   Modal,
-  Tabs,
 } from 'react-component-library';
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { StudentRecord } from '../../types/models';
@@ -164,54 +163,61 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
     setCircularContent('');
   };
 
-  const adminTabs = [
-    { id: 'overview', label: 'Dashboard & KPI' },
-    { id: 'academics', label: 'Academic Structure' },
-    { id: 'students', label: 'Admissions & Directory' },
-    { id: 'payroll', label: 'Faculty Payroll' },
-    { id: 'finance', label: 'Financial Operations' },
-    { id: 'logistics', label: 'Transport & Fleet' },
-  ];
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Tab Navigation Strip */}
-      <Tabs
-        tabs={adminTabs}
-        activeTab={activeTab}
-        onChange={handleTabChange}
-        variant="pill"
-        scrollable
-      />
-
+    <div className="portal-root-view">
       {/* 1. Executive Dashboard View */}
       {activeTab === 'overview' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* StatCards Row */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Quick at-a-glance operational dispatch pills */}
+          <div className="quick-glance-strip">
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Quick Dispatch:
+            </span>
+            <button className="quick-glance-pill" onClick={() => setIsNewStudentModalOpen(true)}>
+              🎓 + Enroll Student
+            </button>
+            <button className="quick-glance-pill" onClick={() => setIsNewClassModalOpen(true)}>
+              🏫 + New Section
+            </button>
+            <button className="quick-glance-pill" onClick={() => setIsCircularModalOpen(true)}>
+              📢 Broadcast Circular
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('payroll')}>
+              💵 Payroll Status
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('finance')}>
+              💳 Fee Invoices
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('logistics')}>
+              🚌 Fleet Tracker
+            </button>
+          </div>
+
+          {/* StatCards Row - Compact */}
           <div className="grid-4col">
             <StatCard
               title="Enrolled Students"
               value={totalStudents.toString()}
-              trend={{ direction: 'up', value: '+8% vs last year' }}
+              trend={{ direction: 'up', value: '+8% YoY' }}
             />
             <StatCard
-              title="Faculty Count"
+              title="Active Faculty"
               value={totalFaculty.toString()}
               trend={{ direction: 'neutral', value: '100% staffed' }}
             />
             <StatCard
-              title="Fee Collection Rate"
+              title="Fee Collection"
               value={`${collectionRate}%`}
-              trend={{ direction: 'up', value: '+$3.9k this week' }}
+              trend={{ direction: 'up', value: '+$3.9k wk' }}
             />
             <StatCard
-              title="Daily Attendance Rate"
+              title="Daily Attendance"
               value={`${attendanceRate}%`}
-              trend={{ direction: 'up', value: 'Average 96%' }}
+              trend={{ direction: 'up', value: 'Avg 96%' }}
             />
           </div>
 
-          {/* Revenue Analytics & Quick Action Bar */}
+          {/* Revenue Analytics & Rapid Action Console */}
           <div className="grid-2col">
             <Card elevation={1}>
               <CardHeader bordered>
