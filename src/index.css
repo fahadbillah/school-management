@@ -341,12 +341,20 @@ body, html {
 
 .school-bottom-nav-fixed {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #ffffff;
-  border-top: 1px solid var(--app-border);
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  max-width: 460px;
+  margin: 0 auto;
   z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.school-bottom-nav-fixed > * {
+  pointer-events: auto;
+  width: 100%;
 }
 
 /* Utility layout cards & grids */
