@@ -86,6 +86,7 @@ interface SchoolStoreContextType {
   updateLeaveStatus: (requestId: string, status: 'approved' | 'rejected') => void;
   reserveBook: (bookId: string) => void;
   addNotification: (title: string, content: string, priority: 'low' | 'normal' | 'high', targetRoles: UserRole[]) => void;
+  resetDemoData: () => void;
 
   // Feedback Toasts
   toast: ToastState | null;
@@ -471,6 +472,7 @@ export const SchoolStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
   };
 
   const updateLeaveStatus = (requestId: string, status: 'approved' | 'rejected') => {
+    const targetReq = leaveRequests.find((l) => l.id === requestId);
     setLeaveRequests((prev) =>
       prev.map((lr) =>
         lr.id === requestId
@@ -482,7 +484,25 @@ export const SchoolStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
           : lr
       )
     );
-    showToast(`Leave request ${status}`);
+
+    // Reactive linkage: If approved, mark student attendance as excused
+    if (status === 'approved' && targetReq) {
+      setStudents((prev) =>
+        prev.map((s) => (s.id === targetReq.studentId ? { ...s, attendanceStatus: 'excused' } : s))
+      );
+      const newAttRecord: AttendanceRecord = {
+        id: `att-leave-${Date.now()}`,
+        studentId: targetReq.studentId,
+        studentName: targetReq.studentName,
+        classId: 'class-8a',
+        date: new Date().toISOString().split('T')[0],
+        status: 'excused',
+        remarks: `Approved ${targetReq.category} leave: ${targetReq.reason}`,
+      };
+      setAttendance((prev) => [newAttRecord, ...prev]);
+    }
+
+    showToast(`Leave request ${status} for ${targetReq?.studentName || 'student'}`);
   };
 
   const reserveBook = (bookId: string) => {
@@ -516,6 +536,39 @@ export const SchoolStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
     };
     setNotifications((prev) => [newNotif, ...prev]);
     showToast(`Circular broadcasted: "${title}"`);
+  };
+
+  const resetDemoData = () => {
+    localStorage.removeItem(`${STORAGE_KEY}_user`);
+    localStorage.removeItem(`${STORAGE_KEY}_students`);
+    localStorage.removeItem(`${STORAGE_KEY}_faculty`);
+    localStorage.removeItem(`${STORAGE_KEY}_classes`);
+    localStorage.removeItem(`${STORAGE_KEY}_attendance`);
+    localStorage.removeItem(`${STORAGE_KEY}_assessments`);
+    localStorage.removeItem(`${STORAGE_KEY}_homework`);
+    localStorage.removeItem(`${STORAGE_KEY}_fees`);
+    localStorage.removeItem(`${STORAGE_KEY}_busRoutes`);
+    localStorage.removeItem(`${STORAGE_KEY}_messages`);
+    localStorage.removeItem(`${STORAGE_KEY}_incidents`);
+    localStorage.removeItem(`${STORAGE_KEY}_leaveRequests`);
+    localStorage.removeItem(`${STORAGE_KEY}_libraryBooks`);
+    localStorage.removeItem(`${STORAGE_KEY}_notifications`);
+
+    setStudents(INITIAL_STUDENTS);
+    setFaculty(INITIAL_FACULTY);
+    setClasses(INITIAL_CLASSES);
+    setAttendance(INITIAL_ATTENDANCE);
+    setAssessments(INITIAL_ASSESSMENTS);
+    setHomework(INITIAL_HOMEWORK);
+    setFees(INITIAL_FEES);
+    setMessages(INITIAL_MESSAGES);
+    setIncidents(INITIAL_INCIDENTS);
+    setLeaveRequests(INITIAL_LEAVE_REQUESTS);
+    setLibraryBooks(INITIAL_LIBRARY_BOOKS);
+    setNotifications(INITIAL_NOTIFICATIONS);
+    setCurrentUser(INITIAL_PROFILES[0]);
+
+    showToast('Mock database reset to initial seeds', 'info');
   };
 
   return (
@@ -560,6 +613,7 @@ export const SchoolStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
         updateLeaveStatus,
         reserveBook,
         addNotification,
+        resetDemoData,
         toast,
         showToast,
         clearToast,
