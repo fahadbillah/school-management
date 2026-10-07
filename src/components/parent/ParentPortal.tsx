@@ -14,7 +14,7 @@ import {
   Badge,
   Button,
   Input,
-  Select,
+  Dropdown,
   Modal,
   Tabs,
 } from 'react-component-library';
@@ -140,9 +140,9 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
             </div>
 
             <div style={{ minWidth: '260px' }}>
-              <Select
+              <Dropdown
                 value={selectedWardId}
-                onChange={(e) => setSelectedWardId(e.target.value)}
+                onChange={(val) => setSelectedWardId(val)}
                 options={[
                   { value: 'student-1', label: 'Lucas Montgomery (Grade 8A)' },
                   { value: 'student-2', label: 'Maya Montgomery (Grade 5B)' },
@@ -452,10 +452,10 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
 
               {/* Message Composer */}
               <form onSubmit={handleSendMessageSubmit} style={{ display: 'flex', gap: '10px' }}>
-                <div style={{ width: '220px' }}>
-                  <Select
+                <div style={{ width: '240px' }}>
+                  <Dropdown
                     value={messageRecipient}
-                    onChange={(e) => setMessageRecipient(e.target.value)}
+                    onChange={(val) => setMessageRecipient(val)}
                     options={[
                       { value: 'faculty-1', label: 'Prof. Eleanor Vance (Math)' },
                       { value: 'faculty-2', label: 'Dr. Jonathan Ross (Physics)' },
@@ -555,16 +555,18 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
               </div>
             </div>
 
-            <Select
-              label="Select Payment Method"
-              value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-              options={[
-                { value: 'Credit Card (Visa •••• 4410)', label: 'Credit Card (Visa •••• 4410)' },
-                { value: 'Bank Direct Debit (ACH)', label: 'Bank Direct Debit (ACH)' },
-                { value: 'Apple Pay / UPI', label: 'Apple Pay / Digital Wallet' },
-              ]}
-            />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Select Payment Method</span>
+              <Dropdown
+                value={paymentMethod}
+                onChange={(val) => setPaymentMethod(val)}
+                options={[
+                  { value: 'Credit Card (Visa •••• 4410)', label: 'Credit Card (Visa •••• 4410)' },
+                  { value: 'Bank Direct Debit (ACH)', label: 'Bank Direct Debit (ACH)' },
+                  { value: 'Apple Pay / UPI', label: 'Apple Pay / Digital Wallet' },
+                ]}
+              />
+            </div>
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '16px' }}>
               <Button variant="ghost" size="md" type="button" onClick={() => setSelectedInvoice(null)}>
@@ -618,16 +620,18 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
         size="md"
       >
         <form onSubmit={handleLeaveSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <Select
-            label="Leave Classification"
-            value={leaveCategory}
-            onChange={(e) => setLeaveCategory(e.target.value as 'Medical' | 'Personal' | 'Family Emergency')}
-            options={[
-              { value: 'Medical', label: 'Medical / Health Appointment' },
-              { value: 'Personal', label: 'Personal / Domestic Obligation' },
-              { value: 'Family Emergency', label: 'Family Emergency' },
-            ]}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Leave Classification</span>
+            <Dropdown
+              value={leaveCategory}
+              onChange={(val) => setLeaveCategory(val as 'Medical' | 'Personal' | 'Family Emergency')}
+              options={[
+                { value: 'Medical', label: 'Medical / Health Appointment' },
+                { value: 'Personal', label: 'Personal / Domestic Obligation' },
+                { value: 'Family Emergency', label: 'Family Emergency' },
+              ]}
+            />
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
             <Input
               label="Start Date"
@@ -678,16 +682,18 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
             onChange={(e) => setConferenceDate(e.target.value)}
             required
           />
-          <Select
-            label="Preferred Time Window"
-            value={conferenceSlot}
-            onChange={(e) => setConferenceSlot(e.target.value)}
-            options={[
-              { value: '03:30 PM - 04:00 PM', label: '03:30 PM - 04:00 PM' },
-              { value: '04:00 PM - 04:30 PM', label: '04:00 PM - 04:30 PM' },
-              { value: '04:30 PM - 05:00 PM', label: '04:30 PM - 05:00 PM' },
-            ]}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Preferred Time Window</span>
+            <Dropdown
+              value={conferenceSlot}
+              onChange={(val) => setConferenceSlot(val)}
+              options={[
+                { value: '03:30 PM - 04:00 PM', label: '03:30 PM - 04:00 PM' },
+                { value: '04:00 PM - 04:30 PM', label: '04:00 PM - 04:30 PM' },
+                { value: '04:30 PM - 05:00 PM', label: '04:30 PM - 05:00 PM' },
+              ]}
+            />
+          </div>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '16px' }}>
             <Button variant="ghost" size="md" type="button" onClick={() => setIsConferenceModalOpen(false)}>

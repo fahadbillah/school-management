@@ -14,7 +14,7 @@ import {
   Badge,
   Button,
   Input,
-  Select,
+  Dropdown,
   Modal,
   Tabs,
 } from 'react-component-library';
@@ -382,18 +382,18 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 value={studentSearch}
                 onChange={(e) => setStudentSearch(e.target.value)}
               />
-              <Select
+              <Dropdown
                 value={gradeFilter}
-                onChange={(e) => setGradeFilter(e.target.value)}
+                onChange={(val) => setGradeFilter(val)}
                 options={[
                   { value: 'all', label: 'All Grade Levels' },
                   { value: 'Grade 8', label: 'Grade 8' },
                   { value: 'Grade 5', label: 'Grade 5' },
                 ]}
               />
-              <Select
+              <Dropdown
                 value={feeStatusFilter}
-                onChange={(e) => setFeeStatusFilter(e.target.value)}
+                onChange={(val) => setFeeStatusFilter(val)}
                 options={[
                   { value: 'all', label: 'All Fee Standings' },
                   { value: 'paid', label: 'Fees Cleared' },
@@ -673,20 +673,20 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             required
           />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-            <Select
+            <Dropdown
               label="Grade Level"
               value={newStudentGrade}
-              onChange={(e) => setNewStudentGrade(e.target.value)}
+              onChange={(val) => setNewStudentGrade(val)}
               options={[
                 { value: 'Grade 8', label: 'Grade 8' },
                 { value: 'Grade 5', label: 'Grade 5' },
                 { value: 'Grade 9', label: 'Grade 9' },
               ]}
             />
-            <Select
+            <Dropdown
               label="Section"
               value={newStudentSection}
-              onChange={(e) => setNewStudentSection(e.target.value)}
+              onChange={(val) => setNewStudentSection(val)}
               options={[
                 { value: 'A', label: 'Section A' },
                 { value: 'B', label: 'Section B' },
@@ -694,10 +694,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               ]}
             />
           </div>
-          <Select
+          <Dropdown
             label="Gender"
             value={newStudentGender}
-            onChange={(e) => setNewStudentGender(e.target.value)}
+            onChange={(val) => setNewStudentGender(val)}
             options={[
               { value: 'Male', label: 'Male' },
               { value: 'Female', label: 'Female' },
@@ -809,16 +809,18 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             placeholder="Detailed description of the circular..."
             required
           />
-          <Select
-            label="Priority Level"
-            value={circularPriority}
-            onChange={(e) => setCircularPriority(e.target.value as 'low' | 'normal' | 'high')}
-            options={[
-              { value: 'normal', label: 'Normal Bulletin' },
-              { value: 'high', label: 'High Priority Alert' },
-              { value: 'low', label: 'Low Priority Informational' },
-            ]}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Priority Level</span>
+            <Dropdown
+              value={circularPriority}
+              onChange={(val) => setCircularPriority(val as 'low' | 'normal' | 'high')}
+              options={[
+                { value: 'normal', label: 'Normal Bulletin' },
+                { value: 'high', label: 'High Priority Alert' },
+                { value: 'low', label: 'Low Priority Informational' },
+              ]}
+            />
+          </div>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '16px' }}>
             <Button variant="ghost" size="md" type="button" onClick={() => setIsCircularModalOpen(false)}>
