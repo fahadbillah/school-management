@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent, Button, Badge, Input, Select } from 'react-component-library';
+import { Card, CardHeader, CardTitle, CardContent, Button, Badge, Input, Dropdown } from 'react-component-library';
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { UserRole } from '../../types/models';
 
@@ -228,10 +228,10 @@ export const AuthModule: React.FC<AuthModuleProps> = ({ onAuthenticated }) => {
 
           <CardContent>
             <form onSubmit={handleSignIn} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Select
+              <Dropdown
                 label="Demo Persona Quick-Fill"
                 value={roleProfiles[selectedRole]?.id}
-                onChange={(e) => handleQuickFill(e.target.value)}
+                onChange={(val) => handleQuickFill(val)}
                 options={profiles.map((p) => ({
                   value: p.id,
                   label: `${p.name} (${p.badge})`,

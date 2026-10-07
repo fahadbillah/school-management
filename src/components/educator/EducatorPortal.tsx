@@ -14,7 +14,7 @@ import {
   Badge,
   Button,
   Input,
-  Select,
+  Dropdown,
   Modal,
   Tabs,
 } from 'react-component-library';
@@ -310,14 +310,16 @@ export const EducatorPortal: React.FC<EducatorPortalProps> = ({
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <Select
-                  value={selectedClassId}
-                  onChange={(e) => setSelectedClassId(e.target.value)}
-                  options={classes.map((c) => ({
-                    value: c.id,
-                    label: `${c.grade} - Section ${c.section}`,
-                  }))}
-                />
+                <div style={{ minWidth: '180px' }}>
+                  <Dropdown
+                    value={selectedClassId}
+                    onChange={(val) => setSelectedClassId(val)}
+                    options={classes.map((c) => ({
+                      value: c.id,
+                      label: `${c.grade} - Section ${c.section}`,
+                    }))}
+                  />
+                </div>
                 <Button variant="primary" size="md" onClick={handleSaveAttendance}>
                   Submit Register & Sync
                 </Button>
@@ -405,32 +407,38 @@ export const EducatorPortal: React.FC<EducatorPortalProps> = ({
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                <Select
-                  value={gradebookSubject}
-                  onChange={(e) => setGradebookSubject(e.target.value)}
-                  options={[
-                    { value: 'Mathematics', label: 'Mathematics' },
-                    { value: 'Physics', label: 'Physics' },
-                    { value: 'Chemistry', label: 'Chemistry' },
-                  ]}
-                />
-                <Select
-                  value={gradebookAssessment}
-                  onChange={(e) => setGradebookAssessment(e.target.value as 'Midterm' | 'Final' | 'Quiz' | 'Assignment')}
-                  options={[
-                    { value: 'Midterm', label: 'Midterm Exam' },
-                    { value: 'Final', label: 'Final Exam' },
-                    { value: 'Quiz', label: 'Continuous Quiz' },
-                  ]}
-                />
-                <Select
-                  value={gradebookTerm}
-                  onChange={(e) => setGradebookTerm(e.target.value)}
-                  options={[
-                    { value: 'Term 1', label: 'Term 1' },
-                    { value: 'Term 2', label: 'Term 2' },
-                  ]}
-                />
+                <div style={{ minWidth: '140px' }}>
+                  <Dropdown
+                    value={gradebookSubject}
+                    onChange={(val) => setGradebookSubject(val)}
+                    options={[
+                      { value: 'Mathematics', label: 'Mathematics' },
+                      { value: 'Physics', label: 'Physics' },
+                      { value: 'Chemistry', label: 'Chemistry' },
+                    ]}
+                  />
+                </div>
+                <div style={{ minWidth: '150px' }}>
+                  <Dropdown
+                    value={gradebookAssessment}
+                    onChange={(val) => setGradebookAssessment(val as 'Midterm' | 'Final' | 'Quiz' | 'Assignment')}
+                    options={[
+                      { value: 'Midterm', label: 'Midterm Exam' },
+                      { value: 'Final', label: 'Final Exam' },
+                      { value: 'Quiz', label: 'Continuous Quiz' },
+                    ]}
+                  />
+                </div>
+                <div style={{ minWidth: '120px' }}>
+                  <Dropdown
+                    value={gradebookTerm}
+                    onChange={(val) => setGradebookTerm(val)}
+                    options={[
+                      { value: 'Term 1', label: 'Term 1' },
+                      { value: 'Term 2', label: 'Term 2' },
+                    ]}
+                  />
+                </div>
               </div>
             </div>
           </CardHeader>
@@ -718,16 +726,18 @@ export const EducatorPortal: React.FC<EducatorPortalProps> = ({
             required
           />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-            <Select
-              label="Subject"
-              value={hwSubject}
-              onChange={(e) => setHwSubject(e.target.value)}
-              options={[
-                { value: 'Mathematics', label: 'Mathematics' },
-                { value: 'Physics', label: 'Physics' },
-                { value: 'English Literature', label: 'English Literature' },
-              ]}
-            />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Subject</span>
+              <Dropdown
+                value={hwSubject}
+                onChange={(val) => setHwSubject(val)}
+                options={[
+                  { value: 'Mathematics', label: 'Mathematics' },
+                  { value: 'Physics', label: 'Physics' },
+                  { value: 'English Literature', label: 'English Literature' },
+                ]}
+              />
+            </div>
             <Input
               label="Submission Due Date"
               type="date"
@@ -800,26 +810,30 @@ export const EducatorPortal: React.FC<EducatorPortalProps> = ({
         size="md"
       >
         <form onSubmit={handleLogIncidentSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <Select
-            label="Select Student"
-            value={incidentStudentId}
-            onChange={(e) => setIncidentStudentId(e.target.value)}
-            options={students.map((s) => ({
-              value: s.id,
-              label: `${s.name} (${s.enrollmentNo})`,
-            }))}
-          />
-          <Select
-            label="Incident Category"
-            value={incidentCategory}
-            onChange={(e) => setIncidentCategory(e.target.value as 'Academic' | 'Behavioral' | 'Punctuality' | 'Commendation')}
-            options={[
-              { value: 'Commendation', label: 'Commendation / Academic Praise' },
-              { value: 'Academic', label: 'Academic Concern' },
-              { value: 'Punctuality', label: 'Punctuality / Attendance Incident' },
-              { value: 'Behavioral', label: 'Behavioral Report' },
-            ]}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Select Student</span>
+            <Dropdown
+              value={incidentStudentId}
+              onChange={(val) => setIncidentStudentId(val)}
+              options={students.map((s) => ({
+                value: s.id,
+                label: `${s.name} (${s.enrollmentNo})`,
+              }))}
+            />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Incident Category</span>
+            <Dropdown
+              value={incidentCategory}
+              onChange={(val) => setIncidentCategory(val as 'Academic' | 'Behavioral' | 'Punctuality' | 'Commendation')}
+              options={[
+                { value: 'Commendation', label: 'Commendation / Academic Praise' },
+                { value: 'Academic', label: 'Academic Concern' },
+                { value: 'Punctuality', label: 'Punctuality / Attendance Incident' },
+                { value: 'Behavioral', label: 'Behavioral Report' },
+              ]}
+            />
+          </div>
           <Input
             label="Incident Narrative / Observations"
             value={incidentNotes}
