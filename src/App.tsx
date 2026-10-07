@@ -3,6 +3,7 @@ import { useSchoolStore } from './context/useSchoolStore';
 import { AppShellLayout } from './components/layout/AppShellLayout';
 import { StatCard, Card, CardHeader, CardTitle, CardContent, Badge, Button } from 'react-component-library';
 import { AuthModule } from './components/auth/AuthModule';
+import { AdminPortal } from './components/admin/AdminPortal';
 
 export const App: React.FC = () => {
   const {
@@ -43,7 +44,10 @@ export const App: React.FC = () => {
       onLogout={() => setIsAuthenticated(false)}
       navItems={navItems}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      {currentRole === 'admin' ? (
+        <AdminPortal />
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {/* Metric Cards Row */}
         <div className="grid-4col">
           <StatCard
@@ -115,7 +119,7 @@ export const App: React.FC = () => {
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                 <Button
-                  variant={currentRole === 'admin' ? 'primary' : 'secondary'}
+                  variant="secondary"
                   size="sm"
                   onClick={() => switchRole('admin')}
                 >
@@ -147,6 +151,7 @@ export const App: React.FC = () => {
           </Card>
         </div>
       </div>
+      )}
     </AppShellLayout>
   );
 };
