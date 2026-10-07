@@ -16,7 +16,6 @@ import {
   Input,
   Dropdown,
   Modal,
-  Tabs,
 } from 'react-component-library';
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { FeeInvoice } from '../../types/models';
@@ -78,14 +77,6 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
   const pendingFees = wardFees.filter((f) => f.status !== 'paid');
   const wardBus = busRoutes[0];
 
-  const parentTabs = [
-    { id: 'overview', label: 'Ward Overview' },
-    { id: 'bustracker', label: 'Live Bus GPS' },
-    { id: 'fees', label: 'Fee Payments' },
-    { id: 'messaging', label: 'Teacher Messaging' },
-    { id: 'leave', label: 'Leave & Consent' },
-  ];
-
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedInvoice) return;
@@ -126,20 +117,20 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Multi-Ward Switcher Header Bar */}
+    <div className="portal-root-view">
+      {/* Multi-Ward Switcher Header Bar - Compact */}
       <Card elevation={1} style={{ background: '#f8fafc' }}>
-        <CardContent style={{ padding: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{ fontSize: '24px' }}>👨‍👩‍👧</span>
+        <CardContent style={{ padding: '12px 16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ fontSize: '20px' }}>👨‍👩‍👧</span>
               <div>
-                <strong style={{ fontSize: '15px' }}>Enrolled Child Profile:</strong>
-                <div style={{ fontSize: '12px', color: '#64748b' }}>Select ward to dynamically refresh linked feeds</div>
+                <strong style={{ fontSize: '14px' }}>Active Student Profile:</strong>
+                <div style={{ fontSize: '11px', color: '#64748b' }}>Switch ward to update linked metrics and communications</div>
               </div>
             </div>
 
-            <div style={{ minWidth: '260px' }}>
+            <div style={{ minWidth: '240px' }}>
               <Dropdown
                 value={selectedWardId}
                 onChange={(val) => setSelectedWardId(val)}
@@ -153,17 +144,31 @@ export const ParentPortal: React.FC<ParentPortalProps> = ({
         </CardContent>
       </Card>
 
-      <Tabs
-        tabs={parentTabs}
-        activeTab={activeTab}
-        onChange={handleTabChange}
-        variant="pill"
-        scrollable
-      />
-
       {/* 1. Multi-Ward Overview Dashboard */}
       {activeTab === 'overview' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Quick at-a-glance family operational shortcuts */}
+          <div className="quick-glance-strip">
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Quick Family Dispatch:
+            </span>
+            <button className="quick-glance-pill" onClick={() => setIsLeaveModalOpen(true)}>
+              📝 + Submit Absence Slip
+            </button>
+            <button className="quick-glance-pill" onClick={() => setIsConferenceModalOpen(true)}>
+              🤝 Book Teacher Conference
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('bustracker')}>
+              🚌 Track School Bus
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('fees')}>
+              💳 Pay Tuition Dues
+            </button>
+            <button className="quick-glance-pill" onClick={() => handleTabChange('messaging')}>
+              💬 Message Educators
+            </button>
+          </div>
+
           <div className="grid-4col">
             <StatCard
               title="Daily Attendance Status"
