@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSchoolStore } from './context/useSchoolStore';
 import { AppShellLayout } from './components/layout/AppShellLayout';
 import { StatCard, Card, CardHeader, CardTitle, CardContent, Badge, Button } from 'react-component-library';
+import { AuthModule } from './components/auth/AuthModule';
 
 export const App: React.FC = () => {
   const {
@@ -15,7 +16,12 @@ export const App: React.FC = () => {
     attendance,
   } = useSchoolStore();
 
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState('overview');
+
+  if (!isAuthenticated) {
+    return <AuthModule onAuthenticated={() => setIsAuthenticated(true)} />;
+  }
 
   const navItems = [
     { id: 'overview', label: 'Overview', icon: '📊' },
@@ -34,6 +40,7 @@ export const App: React.FC = () => {
       onNavTabChange={setActiveTab}
       title={`${currentRole?.toUpperCase()} Workspace`}
       subtitle={`Welcome back, ${currentUser?.name}`}
+      onLogout={() => setIsAuthenticated(false)}
       navItems={navItems}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
