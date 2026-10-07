@@ -4,6 +4,7 @@ import { AppShellLayout } from './components/layout/AppShellLayout';
 import { StatCard, Card, CardHeader, CardTitle, CardContent, Badge, Button } from 'react-component-library';
 import { AuthModule } from './components/auth/AuthModule';
 import { AdminPortal } from './components/admin/AdminPortal';
+import { EducatorPortal } from './components/educator/EducatorPortal';
 
 export const App: React.FC = () => {
   const {
@@ -46,6 +47,8 @@ export const App: React.FC = () => {
     >
       {currentRole === 'admin' ? (
         <AdminPortal />
+      ) : currentRole === 'teacher' ? (
+        <EducatorPortal />
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {/* Metric Cards Row */}
@@ -126,7 +129,7 @@ export const App: React.FC = () => {
                   Admin Control Tower
                 </Button>
                 <Button
-                  variant={currentRole === 'teacher' ? 'primary' : 'secondary'}
+                  variant="secondary"
                   size="sm"
                   onClick={() => switchRole('teacher')}
                 >
