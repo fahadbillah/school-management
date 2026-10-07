@@ -5,6 +5,7 @@ import { StatCard, Card, CardHeader, CardTitle, CardContent, Badge, Button } fro
 import { AuthModule } from './components/auth/AuthModule';
 import { AdminPortal } from './components/admin/AdminPortal';
 import { EducatorPortal } from './components/educator/EducatorPortal';
+import { StudentPortal } from './components/student/StudentPortal';
 
 export const App: React.FC = () => {
   const {
@@ -49,6 +50,8 @@ export const App: React.FC = () => {
         <AdminPortal />
       ) : currentRole === 'teacher' ? (
         <EducatorPortal />
+      ) : currentRole === 'student' ? (
+        <StudentPortal />
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {/* Metric Cards Row */}
@@ -136,7 +139,7 @@ export const App: React.FC = () => {
                   Educator Workspace
                 </Button>
                 <Button
-                  variant={currentRole === 'student' ? 'primary' : 'secondary'}
+                  variant="secondary"
                   size="sm"
                   onClick={() => switchRole('student')}
                 >
