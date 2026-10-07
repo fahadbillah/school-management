@@ -20,7 +20,15 @@ import {
 } from 'react-component-library';
 import { useSchoolStore } from '../../context/useSchoolStore';
 
-export const EducatorPortal: React.FC = () => {
+export interface EducatorPortalProps {
+  activeTab?: string;
+  onTabChange?: (tab: string) => void;
+}
+
+export const EducatorPortal: React.FC<EducatorPortalProps> = ({
+  activeTab: externalTab,
+  onTabChange,
+}) => {
   const {
     students,
     classes,
@@ -36,7 +44,9 @@ export const EducatorPortal: React.FC = () => {
     showToast,
   } = useSchoolStore();
 
-  const [activeTab, setActiveTab] = useState('workspace');
+  const [internalTab, setInternalTab] = useState('workspace');
+  const activeTab = externalTab || internalTab;
+  const handleTabChange = onTabChange || setInternalTab;
 
   // Attendance local marking state
   const [selectedClassId, setSelectedClassId] = useState('class-8a');
@@ -178,7 +188,7 @@ export const EducatorPortal: React.FC = () => {
       <Tabs
         tabs={educatorTabs}
         activeTab={activeTab}
-        onChange={setActiveTab}
+        onChange={handleTabChange}
         variant="pill"
         scrollable
       />
@@ -229,7 +239,7 @@ export const EducatorPortal: React.FC = () => {
                       09:45 AM - 10:45 AM • Topic: Polynomial Factorization & Real Roots
                     </div>
                     <div style={{ marginTop: '10px', display: 'flex', gap: '8px' }}>
-                      <Button variant="primary" size="sm" onClick={() => setActiveTab('attendance')}>
+                      <Button variant="primary" size="sm" onClick={() => handleTabChange('attendance')}>
                         Take Register
                       </Button>
                       <Button variant="secondary" size="sm" onClick={() => setIsNewHomeworkModalOpen(true)}>
@@ -272,7 +282,7 @@ export const EducatorPortal: React.FC = () => {
                   Quick links for daily classroom administrative management:
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <Button variant="primary" size="md" onClick={() => setActiveTab('attendance')}>
+                  <Button variant="primary" size="md" onClick={() => handleTabChange('attendance')}>
                     📋 Open Rapid Attendance Register
                   </Button>
                   <Button variant="secondary" size="md" onClick={() => setIsNewHomeworkModalOpen(true)}>

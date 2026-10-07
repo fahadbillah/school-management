@@ -21,7 +21,15 @@ import {
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { StudentRecord } from '../../types/models';
 
-export const AdminPortal: React.FC = () => {
+export interface AdminPortalProps {
+  activeTab?: string;
+  onTabChange?: (tab: string) => void;
+}
+
+export const AdminPortal: React.FC<AdminPortalProps> = ({
+  activeTab: externalTab,
+  onTabChange,
+}) => {
   const {
     students,
     faculty,
@@ -37,7 +45,9 @@ export const AdminPortal: React.FC = () => {
     showToast,
   } = useSchoolStore();
 
-  const [activeTab, setActiveTab] = useState('overview');
+  const [internalTab, setInternalTab] = useState('overview');
+  const activeTab = externalTab || internalTab;
+  const handleTabChange = onTabChange || setInternalTab;
   const [revenuePeriod, setRevenuePeriod] = useState<'monthly' | 'quarterly' | 'annual'>('monthly');
 
   // Modals
@@ -169,7 +179,7 @@ export const AdminPortal: React.FC = () => {
       <Tabs
         tabs={adminTabs}
         activeTab={activeTab}
-        onChange={setActiveTab}
+        onChange={handleTabChange}
         variant="pill"
         scrollable
       />

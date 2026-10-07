@@ -20,7 +20,15 @@ import {
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { HomeworkTask } from '../../types/models';
 
-export const StudentPortal: React.FC = () => {
+export interface StudentPortalProps {
+  activeTab?: string;
+  onTabChange?: (tab: string) => void;
+}
+
+export const StudentPortal: React.FC<StudentPortalProps> = ({
+  activeTab: externalTab,
+  onTabChange,
+}) => {
   const {
     students,
     homework,
@@ -32,7 +40,9 @@ export const StudentPortal: React.FC = () => {
     showToast,
   } = useSchoolStore();
 
-  const [activeTab, setActiveTab] = useState('overview');
+  const [internalTab, setInternalTab] = useState('overview');
+  const activeTab = externalTab || internalTab;
+  const handleTabChange = onTabChange || setInternalTab;
 
   // Homework submission state
   const [selectedHomework, setSelectedHomework] = useState<HomeworkTask | null>(null);
@@ -112,7 +122,7 @@ export const StudentPortal: React.FC = () => {
       <Tabs
         tabs={studentTabs}
         activeTab={activeTab}
-        onChange={setActiveTab}
+        onChange={handleTabChange}
         variant="pill"
         scrollable
       />
@@ -138,7 +148,7 @@ export const StudentPortal: React.FC = () => {
                 <Button
                   variant="secondary"
                   size="md"
-                  onClick={() => setActiveTab('schedule')}
+                  onClick={() => handleTabChange('schedule')}
                 >
                   View Full Timetable
                 </Button>
@@ -175,7 +185,7 @@ export const StudentPortal: React.FC = () => {
               <CardHeader bordered>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                   <CardTitle>Approaching Coursework Deadlines</CardTitle>
-                  <Button variant="ghost" size="sm" onClick={() => setActiveTab('homework')}>
+                  <Button variant="ghost" size="sm" onClick={() => handleTabChange('homework')}>
                     Open Locker
                   </Button>
                 </div>

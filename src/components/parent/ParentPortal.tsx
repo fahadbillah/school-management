@@ -21,7 +21,15 @@ import {
 import { useSchoolStore } from '../../context/useSchoolStore';
 import type { FeeInvoice } from '../../types/models';
 
-export const ParentPortal: React.FC = () => {
+export interface ParentPortalProps {
+  activeTab?: string;
+  onTabChange?: (tab: string) => void;
+}
+
+export const ParentPortal: React.FC<ParentPortalProps> = ({
+  activeTab: externalTab,
+  onTabChange,
+}) => {
   const {
     students,
     fees,
@@ -34,7 +42,9 @@ export const ParentPortal: React.FC = () => {
     showToast,
   } = useSchoolStore();
 
-  const [activeTab, setActiveTab] = useState('overview');
+  const [internalTab, setInternalTab] = useState('overview');
+  const activeTab = externalTab || internalTab;
+  const handleTabChange = onTabChange || setInternalTab;
 
   // Multi-ward switcher: Lucas (student-1) vs Maya (student-2)
   const [selectedWardId, setSelectedWardId] = useState('student-1');
@@ -146,7 +156,7 @@ export const ParentPortal: React.FC = () => {
       <Tabs
         tabs={parentTabs}
         activeTab={activeTab}
-        onChange={setActiveTab}
+        onChange={handleTabChange}
         variant="pill"
         scrollable
       />
@@ -205,10 +215,10 @@ export const ParentPortal: React.FC = () => {
                 </div>
 
                 <div style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
-                  <Button variant="primary" size="sm" onClick={() => setActiveTab('bustracker')}>
+                  <Button variant="primary" size="sm" onClick={() => handleTabChange('bustracker')}>
                     Track School Bus
                   </Button>
-                  <Button variant="secondary" size="sm" onClick={() => setActiveTab('fees')}>
+                  <Button variant="secondary" size="sm" onClick={() => handleTabChange('fees')}>
                     Review Tuition Fees
                   </Button>
                 </div>
@@ -232,7 +242,7 @@ export const ParentPortal: React.FC = () => {
                   <Button variant="secondary" size="md" onClick={() => setIsConferenceModalOpen(true)}>
                     🤝 Request Parent-Teacher Conference Slot
                   </Button>
-                  <Button variant="ghost" size="md" onClick={() => setActiveTab('messaging')}>
+                  <Button variant="ghost" size="md" onClick={() => handleTabChange('messaging')}>
                     💬 Message Class Teacher Directly
                   </Button>
                 </div>

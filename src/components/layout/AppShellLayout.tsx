@@ -21,7 +21,7 @@ export const AppShellLayout: React.FC<AppShellLayoutProps> = ({
   onLogout,
   navItems,
 }) => {
-  const { currentUser, switchRole, isMobile, toast, clearToast } = useSchoolStore();
+  const { currentUser, switchRole, isMobile, toast, clearToast, resetDemoData } = useSchoolStore();
 
   const bottomNavConfig: BottomNavItemConfig[] = navItems.slice(0, 5).map((item) => ({
     id: item.id,
@@ -120,11 +120,20 @@ export const AppShellLayout: React.FC<AppShellLayoutProps> = ({
                 </button>
               </div>
 
+              <Button
+                variant="ghost"
+                size="sm"
+                style={{ width: '100%', marginTop: '8px', color: '#94a3b8' }}
+                onClick={resetDemoData}
+              >
+                🔄 Reset Demo Data
+              </Button>
+
               {onLogout && (
                 <Button
                   variant="ghost"
                   size="sm"
-                  style={{ width: '100%', marginTop: '8px' }}
+                  style={{ width: '100%', marginTop: '4px' }}
                   onClick={onLogout}
                 >
                   Sign Out / Switch Mode
