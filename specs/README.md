@@ -51,3 +51,17 @@ All specifications are organized by module and user role, capturing detailed use
 7. **[Cross-Role Reactive State & Data Matrix](file:///Users/fahadbillah/projects/school-management/specs/06_cross_role_data_sync.md)**
    - Entity relationship schemas (Students, Faculty, Classes, Invoices, Attendance, Assignments, Buses, Messages, Incidents).
    - Real-time cross-role reactive update matrix (e.g. Teacher marks attendance -> Parent feed updates -> Admin attendance rate recalculates).
+
+---
+
+## Gherkin Executable Feature Suite (`specs/features/`)
+
+All specifications have corresponding standardized Gherkin (`.feature`) test scenarios for BDD automation:
+
+1. **[`01_auth_role_switching.feature`](file:///Users/fahadbillah/projects/school-management/specs/features/01_auth_role_switching.feature)**: Splash onboarding, bypass entry, 4-persona grid selection, quick-fill dropdowns, and in-session role switching.
+2. **[`02_admin_portal.feature`](file:///Users/fahadbillah/projects/school-management/specs/features/02_admin_portal.feature)**: Dashboard KPIs, class master creation, student filtering & admission, payroll disbursement, overdue fee reminders, bus fleet telemetry, and institutional circular dispatch.
+3. **[`03_educator_portal.feature`](file:///Users/fahadbillah/projects/school-management/specs/features/03_educator_portal.feature)**: Teacher workspace schedules, tap-and-mark attendance register, gradebook calculation & publishing, homework issuing & grading queue, conduct commendation logger, and leave approval.
+4. **[`04_student_portal.feature`](file:///Users/fahadbillah/projects/school-management/specs/features/04_student_portal.feature)**: Activity hero cards, coursework locker upload, weekday schedule navigation, official digital report card preview, and library catalog book hold reservations.
+5. **[`05_parent_portal.feature`](file:///Users/fahadbillah/projects/school-management/specs/features/05_parent_portal.feature)**: Multi-ward switcher (Lucas vs Maya), live school bus transit tracker & stop map, fee ledger online payment simulator, teacher direct messaging & conference booking, and absence slip submission.
+6. **[`06_cross_role_data_sync.feature`](file:///Users/fahadbillah/projects/school-management/specs/features/06_cross_role_data_sync.feature)**: End-to-end reactive cross-role sync (Teacher attendance -> Parent & Admin; Student homework -> Teacher queue; Parent fee payment -> Admin finance ledger; Parent leave slip -> Teacher approval; Reset demo data).
+
